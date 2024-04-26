@@ -1,0 +1,63 @@
+<div class="container">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input #input (keyup)="applyFilter($event)" matInput placeholder="Text for search...">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table [dataSource]="dataSource" mat-table matSort>
+
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="name">Name</th>
+        <td *matCellDef="let row" mat-cell> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="lastName">Last Name</th>
+        <td *matCellDef="let row" mat-cell> {{row.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfBirth">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="date">Date of Birth</th>
+        <td *matCellDef="let row" mat-cell> {{row.dateOfBirth}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="education">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="productCondition">Education</th>
+        <td *matCellDef="let row" mat-cell> {{row.education}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="position">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="position">Position</th>
+        <td *matCellDef="let row" mat-cell> {{row.position}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="role">Role</th>
+        <td *matCellDef="let row" class="comment" mat-cell> {{row.role}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="">Action</th>
+        <td *matCellDef="let row" mat-cell>
+          <button (click)="updateUser(row)" color="primary" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button (click)="deleteUser(row.key)" color="warn" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+      <tr *matNoDataRow class="mat-row">
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"
+                   aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>

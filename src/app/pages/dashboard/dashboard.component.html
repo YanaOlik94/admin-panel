@@ -1,0 +1,61 @@
+<ng-container *ngIf="!isChartOpened; else Graphtemplate">
+
+  <div class="container">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input #input (keyup)="applyFilter($event)" matInput placeholder="Text for search...">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table [dataSource]="dataSource" mat-table matSort>
+
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header="name">Name</th>
+          <td *matCellDef="let row" mat-cell> {{row.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="users_resolved">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header="users_resolved">Users resolved</th>
+          <td *matCellDef="let row" mat-cell> {{row.users_resolved}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateOfBirth">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header="date">Date of Birth</th>
+          <td *matCellDef="let row" mat-cell> {{row.dateOfBirth}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="active">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header="active">Active</th>
+          <td *matCellDef="let row" mat-cell> {{row.active}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="image_url">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header="image_url">Image</th>
+          <td *matCellDef="let row" mat-cell>
+            <img class="img" src="{{row.image_url}}">
+          </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row (click)="openReport(row.id)"></tr>
+
+        <tr *matNoDataRow class="mat-row">
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator *ngIf="dataSource.data.length > 5" [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10"
+                     aria-label="Select page of users"></mat-paginator>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #Graphtemplate>
+  <div class="chart-container">
+    <div class="chart-title">
+      <mat-icon (click)="goBack()">arrow_back</mat-icon>
+      <h1 class="title">Graph</h1>
+    </div>
+    <figure id="bar"></figure>
+  </div>
+</ng-template>

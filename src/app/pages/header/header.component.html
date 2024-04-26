@@ -1,0 +1,21 @@
+<div class="bg-dark" *ngIf="isLoggedIn">
+  <div class="container">
+    <mat-toolbar>
+      <button aria-label="Example icon-button with menu icon" class="example-icon" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="nav">
+         <a class="nav-link" aria-disabled="true" [routerLinkActive]="['active-link']"
+            [routerLink]="['/dashboard']">Reports</a>
+      </span>
+      <span *ngIf="isAdminLoggedIn">
+         <a class="nav-link" aria-disabled="true" [routerLinkActive]="['active-link']"
+            [routerLink]="['/users']">Users</a>
+      </span>
+      <span class="nav-spacer"></span>
+      <span>
+         <a class="nav-link" aria-disabled="true" (click)="logout()">Logout</a>
+      </span>
+    </mat-toolbar>
+  </div>
+</div>

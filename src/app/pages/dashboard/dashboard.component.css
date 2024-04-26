@@ -1,0 +1,39 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 70px;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-title {
+  display: grid;
+  grid-template-columns: 50px 550px;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.img {
+  width: 90px;
+  padding: 10px;
+}

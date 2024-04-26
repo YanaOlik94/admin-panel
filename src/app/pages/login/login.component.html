@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="form-container">
+    <h1>Login</h1>
+    <form [formGroup]="form" class="login-form">
+      <mat-form-field class="form-field">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="email">
+        @if (isValid('email')) {
+        <mat-error>Please, enter valid email address</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput formControlName="password" placeholder="password">
+        @if (isValid('password')) {
+        <mat-error>Please, enter password</mat-error>
+        }
+      </mat-form-field>
+      <button mat-raised-button (click)="submitLogin()">Submit</button>
+    </form>
+  </div>
+</div>
+
